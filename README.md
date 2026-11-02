@@ -1,4 +1,4 @@
-# Infraestructura 2 — Práctica 5: GNS3, DHCP, SNMP y Zabbix
+# Práctica 5: GNS3, DHCP, SNMP y Zabbix
 
 **Estudiante:** José Miguel Díaz Ferreras  
 **Matrícula:** `2025-0693`  
