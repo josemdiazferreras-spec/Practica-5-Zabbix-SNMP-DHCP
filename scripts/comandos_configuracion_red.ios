@@ -1,0 +1,42 @@
+! Resumen de las instrucciones de configuracion usadas para la LAN.
+! Documento orientativo de reproduccion, no reemplaza los running-config.
+!
+! R1: direccion LAN y NAT
+interface FastEthernet0/0
+ ip address 10.6.93.1 255.255.255.0
+ ip nat inside
+ no shutdown
+exit
+interface GigabitEthernet1/0
+ ip address dhcp
+ ip nat outside
+ no shutdown
+exit
+!
+! Pool DHCP de R1
+ip dhcp excluded-address 10.6.93.1 10.6.93.99
+ip dhcp excluded-address 10.6.93.201 10.6.93.254
+ip dhcp pool LAN_20250693
+ network 10.6.93.0 255.255.255.0
+ default-router 10.6.93.1
+ dns-server 1.1.1.1
+exit
+!
+! NAT/PAT en R1
+access-list 20 permit 10.6.93.0 0.0.0.255
+ip nat inside source list 20 interface GigabitEthernet1/0 overload
+!
+! El valor real de comunidad SNMP no se publica:
+access-list 10 permit 10.6.93.101
+access-list 10 permit 10.6.93.100
+snmp-server community <COMUNIDAD_SNMP_RO_REDACTADA> RO 10
+!
+! SW: administracion y acceso al gateway (bloque de otro dispositivo)
+interface Vlan1
+ ip address 10.6.93.2 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 10.6.93.1
+access-list 10 permit 10.6.93.101
+access-list 10 permit 10.6.93.100
+snmp-server community <COMUNIDAD_SNMP_RO_REDACTADA> RO 10

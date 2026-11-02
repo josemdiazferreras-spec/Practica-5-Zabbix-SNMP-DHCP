@@ -1,0 +1,13 @@
+digraph G {
+ graph [fontname="DejaVu Sans",bgcolor="white",rankdir=LR,pad="0.40",nodesep="0.65",ranksep="0.65",dpi=165];
+ node [shape=box,style="rounded,filled",penwidth=1.5,fontname="DejaVu Sans",fontsize=13,margin="0.18,0.16"];
+ edge [fontname="DejaVu Sans",fontsize=10,penwidth=1.8,arrowsize=0.65];
+ z [label="Zabbix / eth0\nCliente DHCP\nGestor SNMP",fillcolor="#FFF0E3",color="#C67B3D"];
+ r [label="R1 / 10.6.93.1\nServidor DHCP\nAgente SNMP RO",fillcolor="#EAF2FF",color="#3173BD"];
+ sw [label="SW / 10.6.93.2\nAgente SNMP RO",fillcolor="#E6F7F1",color="#15856B"];
+ z -> r [label="Solicitudes DHCP\ny consultas SNMP/UDP 161",color="#D28741"];
+ r -> z [label="Concesión DHCP\ny datos SNMP",color="#3173BD"];
+ z -> sw [label="Consulta SNMP/UDP 161",color="#D28741"];
+ sw -> z [label="Estadísticas de interfaces",color="#15856B"];
+ labelloc=b; label="SNMPv2c de solo lectura + ACL 10 en ambos Cisco"; fontsize=11; fontcolor="#52657D";
+}

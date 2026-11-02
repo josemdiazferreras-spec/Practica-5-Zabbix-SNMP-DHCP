@@ -1,0 +1,13 @@
+digraph G {
+ graph [fontname="DejaVu Sans", bgcolor="white", rankdir=TB, pad="0.38", nodesep="0.55", ranksep="0.75", dpi=160, splines=ortho];
+ node [shape=box, style="rounded,filled", penwidth=1.6, fontname="DejaVu Sans", fontsize=15, margin="0.18,0.13"];
+ edge [color="#657589", penwidth=2.0, arrowsize=0.7, fontname="DejaVu Sans", fontsize=10];
+ internet [label="NAT1  |  GNS3 VM\nRed externa 192.168.42.0/24\nGateway 192.168.42.1",fillcolor="#EDF3FB",color="#7A91B3"];
+ r1 [label="R1  |  Router Cisco 7200\nGi1/0: 192.168.42.68 (DHCP)\nFa0/0: 10.6.93.1/24\nDHCP • NAT/PAT • SNMP RO",fillcolor="#E6F0FE",color="#3173BD"];
+ sw [label="SW  |  Switch IOSvL2\nSVI VLAN 1: 10.6.93.2/24\nGateway: 10.6.93.1\nPVST • SNMP RO",fillcolor="#E6F7F1",color="#15856B"];
+ zab [label="Zabbix Appliance 7.0.32\neth0: 10.6.93.101 principal\neth0: 10.6.93.100 secundaria\nCliente DHCP • SNMP manager",fillcolor="#FFF1E6",color="#C67B3D"];
+ internet -> r1 [label="NAT ↔ Gi1/0",dir=none];
+ r1 -> sw [label="Fa0/0 ↔ Gi0/0",dir=none];
+ sw -> zab [label="Gi0/1 ↔ eth0",dir=none];
+ labelloc=b; label="Laboratorio académico · LAN 10.6.93.0/24 · José Miguel Díaz · 2025-0693"; fontsize=11; fontcolor="#52657D";
+}

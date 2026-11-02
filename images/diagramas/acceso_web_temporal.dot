@@ -1,0 +1,13 @@
+digraph G {
+ graph [fontname="DejaVu Sans",bgcolor="white",rankdir=LR,pad="0.38",nodesep="0.52",ranksep="0.58",dpi=170];
+ node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=12,penwidth=1.4,margin="0.16,0.15"];
+ w [label="Windows / Chrome\nhttp://127.0.0.1:8088",fillcolor="#EAF2FF",color="#3173BD"];
+ vm [label="GNS3 VM / SSH\n192.168.200.169",fillcolor="#F2F3F8",color="#73849B"];
+ r [label="R1 / NAT TCP\n192.168.42.68:8080",fillcolor="#E8F8EE",color="#27936C"];
+ z [label="Frontend Zabbix\n10.6.93.100:80",fillcolor="#FFF0E3",color="#C67B3D"];
+ edge [penwidth=1.9,arrowsize=0.7,color="#52657D",fontname="DejaVu Sans",fontsize=9];
+ w->vm [label="Túnel SSH local"];
+ vm->r [label="Conexión HTTP privada"];
+ r->z [label="Redirección 8080→80"];
+ labelloc=b;label="Acceso administrativo temporal para visualizar el laboratorio; NO transporta SNMP";fontsize=10;fontcolor="#52657D";
+}

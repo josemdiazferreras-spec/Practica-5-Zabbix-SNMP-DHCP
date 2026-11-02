@@ -1,0 +1,24 @@
+! Consultas verificadas durante el laboratorio; ejecutar en el equipo correspondiente.
+! R1:
+show ip interface brief
+show ip route
+show ip dhcp pool
+show ip dhcp binding
+show ip nat statistics
+show ip nat translations
+show running-config | include snmp-server community
+show access-lists 10
+ping 10.6.93.2
+ping 1.1.1.1
+!
+! SW:
+show ip interface brief
+show running-config interface Vlan1
+show vlan brief
+show mac address-table dynamic
+show running-config | include snmp-server community
+show access-lists 10
+ping 10.6.93.1
+!
+! Guardado realizado en ambos equipos:
+copy running-config startup-config

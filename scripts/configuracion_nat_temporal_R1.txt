@@ -1,0 +1,8 @@
+! Comando historico ejecutado para facilitar el acceso al frontend de Zabbix
+! desde la GNS3 VM; queda reflejado en el running-config observado de R1.
+configure terminal
+ip nat inside source static tcp 10.6.93.100 80 interface GigabitEthernet1/0 8080
+end
+!
+! Si se decide retirar este acceso en otro momento, se puede eliminar la
+! regla con su equivalente 'no', una vez que no sea necesaria para el video.
